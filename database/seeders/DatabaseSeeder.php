@@ -20,11 +20,5 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         $this->call(UsersTableSeeder::class);
-        $this->call(CoursesTableSeeder::class);
-        $this->call(SubCourseTableSeeder::class);
-        $this->call(OfferTableSeeder::class);
-        $this->call(SlotTableSeeder::class);
-        $this->call(BookingTableSeeder::class);
-
     }
 }

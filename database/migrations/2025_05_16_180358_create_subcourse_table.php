@@ -14,8 +14,6 @@ return new class extends Migration
         Schema::create('subcourses', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
-            $table->foreignId('course_id')->constrained()->onDelete('cascade'); // subkurs löschen wenn kurs gelöscht wird
-            $table->string('name');
         });
     }
 
