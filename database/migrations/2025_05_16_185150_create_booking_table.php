@@ -16,8 +16,8 @@ return new class extends Migration
             $table->timestamps();
             $table->foreignId('giver_id')->constrained('users');
             $table->foreignId('receiver_id')->constrained('users');
-            $table->foreignId('offer_id');
-            $table->foreignId('slot_id');
+            $table->foreignId('offer_id')->constrained('offers');
+            $table->foreignId('slot_id')->constrained('slots');
         });
     }
 

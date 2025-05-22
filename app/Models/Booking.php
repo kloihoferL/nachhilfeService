@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Booking extends Model
 {
@@ -21,4 +23,18 @@ class Booking extends Model
     public function offer():BelongsTo{
         return $this->belongsTo(Offer::class);
     }
+
+    //eine Buchung besitzt mehrere Slots
+    /*public function slot():HasMany{
+        return $this->hasMany(Slot::class);
+    }*/
+
+    //Slot gehört zu einer Buchung
+    public function slot(): BelongsTo {
+        return $this->belongsTo(Slot::class);
+    }
+
+
+
+
 }

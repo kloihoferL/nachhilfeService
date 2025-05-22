@@ -16,8 +16,8 @@ return new class extends Migration
             $table->timestamps();
             $table->string('name');
             $table->string('description');
-            $table->foreignId('course_id');
-            $table->foreignId('user_id');
+            $table->foreignId('course_id')->constrained()->onDelete('cascade'); //angebot löschen wenn kurs gelöscht wird
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); //angebot löschen wenn user gelöscht wird
             $table->string('comment');
             $table->boolean('booked')->default(false);
         });
