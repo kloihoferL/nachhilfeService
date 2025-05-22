@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string('description');
             $table->foreignId('course_id')->constrained()->onDelete('cascade'); //angebot löschen wenn kurs gelöscht wird
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade'); //angebot löschen wenn user gelöscht wird
-            $table->string('comment');
+            $table->string('comment')->default('');
             $table->boolean('booked')->default(false);
         });
     }
