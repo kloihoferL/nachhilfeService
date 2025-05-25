@@ -23,6 +23,8 @@ class DatabaseSeeder extends Seeder
         $this->call(CoursesTableSeeder::class);
         $this->call(SubCourseTableSeeder::class);
         $this->call(OfferTableSeeder::class);
+        $this->call(SlotTableSeeder::class);
+        $this->call(AppointmentRequestTableSeeder::class);
 
     }
 }

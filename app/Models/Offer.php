@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class Offer extends Model
 {
-    protected $fillable = ['name', 'description', 'course_id', 'user_id', 'comment', 'booked'];
+    protected $fillable = ['name', 'description', 'course_id', 'user_id', 'booked'];
 
     public function course(): BelongsTo
     {

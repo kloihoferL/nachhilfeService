@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\AppointmentRequestController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,12 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 Route::get('/offers', [OfferController::class, 'index']);
+Route::get('offers/{id}', [OfferController::class, 'show']);
+Route::delete('offers/{id}', [OfferController::class, 'delete']);
+Route::post('/offers', [OfferController::class, 'save']);
+Route::put('offers/{id}/booked', [OfferController::class, 'changeBookedStatus']);
+Route::put('newAppointment', [AppointmentRequestController::class, 'makeAppointment']);
+Route::put('rejectAppointment/{id}', [AppointmentRequestController::class, 'rejectAppointment']);
+Route::put('acceptAppointment/{id}', [AppointmentRequestController::class, 'acceptAppointment']);
+Route::get('appointmentRequests', [AppointmentRequestController::class, 'getAppointmentRequests']);
+
