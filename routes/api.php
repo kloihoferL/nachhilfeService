@@ -24,9 +24,9 @@ Route::get('/offers', [OfferController::class, 'index']);
 Route::get('offers/{id}', [OfferController::class, 'show']);
 Route::delete('offers/{id}', [OfferController::class, 'delete']);
 Route::post('/offers', [OfferController::class, 'save']);
-Route::put('offers/{id}/booked', [OfferController::class, 'changeBookedStatus']);
-Route::put('newAppointment', [AppointmentRequestController::class, 'makeAppointment']);
-Route::put('rejectAppointment/{id}', [AppointmentRequestController::class, 'rejectAppointment']);
-Route::put('acceptAppointment/{id}', [AppointmentRequestController::class, 'acceptAppointment']);
-Route::get('appointmentRequests', [AppointmentRequestController::class, 'getAppointmentRequests']);
+Route::put('/offers/{id}/booked', [OfferController::class, 'changeBookedStatus']);
+Route::post('/newAppointment', [AppointmentRequestController::class, 'makeAppointment']);
+Route::put('/rejectAppointment/{id}', [AppointmentRequestController::class, 'rejectAppointment']);
+Route::put('/acceptAppointment/{id}', [AppointmentRequestController::class, 'acceptAppointment']);
+Route::get('/appointmentRequests', [AppointmentRequestController::class, 'getAppointmentRequests']);
 

@@ -2,14 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AppointmentRequest;
 use Illuminate\Http\Request;
 
 class AppointmentRequestController extends Controller
 {
     public function makeAppointment(Request $request){
-        $appointmentRequest = AppointmentRequest::create($request->all());
+        $appointment = $this->parseRequest($request); //request parsen
+        $appointmentRequest = AppointmentRequest::create($appointment->all());
         return response()->json(['message' => 'Appointment request created successfully', 'data' => $appointmentRequest], 201);
     }
+
+
 
     public function getAppointmentRequests(){
         $appointmentRequests = AppointmentRequest::all();

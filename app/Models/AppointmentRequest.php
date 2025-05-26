@@ -8,7 +8,7 @@ class AppointmentRequest extends Model
 {
     protected $fillable = [
         'offer_id', 'sender_id', 'receiver_id',
-        'requested_time', 'status'
+        'requested_time','message', 'status'
     ];
 
     public function offer()
