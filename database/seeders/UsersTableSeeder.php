@@ -28,5 +28,13 @@ class UsersTableSeeder extends Seeder
         $user1->role = 'nehmer';
         $user1->ausbildung = 'HTL Informatik';
         $user1->save();
+
+        $user2 = new User();
+        $user2->name = 'AngebotGeber2';
+        $user2->email = 'test3@gmail.com';
+        $user2->password = bcrypt('secret');
+        $user2->role = 'geber';
+        $user2->ausbildung = 'HTL Informatik';
+        $user2->save();
     }
 }

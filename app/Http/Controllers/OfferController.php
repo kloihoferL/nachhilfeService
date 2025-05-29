@@ -7,6 +7,7 @@ use Database\Seeders\OfferTableSeeder;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Gate;
 
 class OfferController extends Controller
 {
@@ -31,10 +32,15 @@ class OfferController extends Controller
     {
         //$offer = Offer::find($id);
         $offer = Offer::where('id', $id)->first();
+
         if ($offer) {
-            //TODO Check if the user has permission to delete the offer
-            $offer->delete();
-            return response()->json(['message' => 'Offer deleted successfully'], 200);
+            //checken ob er das löschen darf
+            if (Gate::denies('own-offer', $offer)) {
+                return response()->json(['message' => 'You do not own this offer.'], 403);
+            }else{
+                $offer->delete();
+                return response()->json(['message' => 'Offer deleted successfully'], 200);
+            }
         } else {
             return response()->json(['message' => 'Offer not found'], 404);
         }
@@ -63,15 +69,18 @@ class OfferController extends Controller
 
         try {
             $offer = Offer::find($id);
+            if (Gate::denies('own-offer', $offer)) {
+                return response()->json(['message' => 'You do not own this offer.'], 403);
+            }else{
+                if (!$offer) {
+                    return response()->json(['message' => "Offer with ID $id not found"], 404);
+                }
 
-            if (!$offer) {
-                return response()->json(['message' => "Offer with ID $id not found"], 404);
+                $offer->update($request->all());
+                DB::commit();
+
+                return response()->json($offer, 200);
             }
-
-            $offer->update($request->all());
-            DB::commit();
-
-            return response()->json($offer, 200);
 
         } catch (\Exception $e) {
             DB::rollBack();
