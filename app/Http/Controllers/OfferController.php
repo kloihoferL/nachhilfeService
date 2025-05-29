@@ -42,7 +42,7 @@ class OfferController extends Controller
 
     public function save(Request $request): JsonResponse
     {
-        $request = $this->parseRequest($request); //request parsen
+        $request = $this->parseRequest($request);
         DB::beginTransaction();
         try {
             $offer = Offer::create($request->all());
@@ -53,6 +53,32 @@ class OfferController extends Controller
             return response()->json(['message' => 'Saving offer failed: ' . $e->getMessage()], 500);
         }
     }
+
+
+    public function update(Request $request, string $id): JsonResponse
+    {
+        $request = $this->parseRequest($request); // optional, je nach Umsetzung
+
+        DB::beginTransaction();
+
+        try {
+            $offer = Offer::find($id);
+
+            if (!$offer) {
+                return response()->json(['message' => "Offer with ID $id not found"], 404);
+            }
+
+            $offer->update($request->all());
+            DB::commit();
+
+            return response()->json($offer, 200);
+
+        } catch (\Exception $e) {
+            DB::rollBack();
+            return response()->json(['message' => 'Updating offer failed: ' . $e->getMessage()], 500);
+        }
+    }
+
 
     public function changeBookedStatus($id): JsonResponse
     {
@@ -65,30 +91,6 @@ class OfferController extends Controller
             return response()->json(['message' => 'Offer not found'], 404);
         }
     }
-
-
-
-
-
-
-
-
-
-    /*public function save(Request $request):JsonResponse{
-
-        $request = $this->parseRequest($request);
-
-        DB::beginTransaction();
-        try {
-            $offer = Offer::create
-
-        } catch (\Exception $e) {
-            DB::rollBack(); //wenn ein Fehler auftritt, dann rollback
-            return response()->json("saving offer failed: " . $e->getMessage(), 500);
-        }
-
-    }*/
-
 
 
 

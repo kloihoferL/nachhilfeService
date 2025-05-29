@@ -29,4 +29,5 @@ Route::post('/newAppointment', [AppointmentRequestController::class, 'makeAppoin
 Route::put('/rejectAppointment/{id}', [AppointmentRequestController::class, 'rejectAppointment']);
 Route::put('/acceptAppointment/{id}', [AppointmentRequestController::class, 'acceptAppointment']);
 Route::get('/appointmentRequests', [AppointmentRequestController::class, 'getAppointmentRequests']);
+Route::put('offers/{id}', [OfferController::class, 'update']);
 
