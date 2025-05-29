@@ -31,7 +31,7 @@ Route::get('/appointmentRequests', [AppointmentRequestController::class, 'getApp
 //Routen die für autentifizierte Geber und Nehmer zugänglich sind
 Route::group(['middleware' => ['api', 'auth.jwt']], function () {
     Route::post('/auth/logout', [AuthController::class, 'logout']);
-    Route::get('/bookings', [BookingController::class, 'getBookings']); //alle Nutzer können ihre eigenen bookings erhalten
+    Route::get('/bookings', [BookingController::class, 'index']); //alle Nutzer können ihre eigenen bookings erhalten
 });
 
 
