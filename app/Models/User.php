@@ -9,8 +9,9 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use PHPOpenSourceSaver\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -23,6 +24,7 @@ class User extends Authenticatable
         'name', //nur name nicht first and last
         'email',
         'password',
+        'role'
     ];
 
     /**
@@ -45,6 +47,16 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return ['user' => ['id' => $this->id]];
+    }
+
 
     public function offers(): HasMany {
         return $this->hasMany(Offer::class);
@@ -56,6 +68,14 @@ class User extends Authenticatable
 
     public function bookingsAsReceiver(): HasMany {
         return $this->hasMany(Booking::class, 'receiver_id');
+    }
+
+    public function isGiver(){
+        return $this->role === 'geber';
+    }
+
+    public function isTaker(){
+        return $this->role === 'nehmer';
     }
 
 

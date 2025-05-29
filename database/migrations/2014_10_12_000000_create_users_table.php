@@ -17,7 +17,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->string('role'); //entweder nehmer oder geber
+            //$table->string('role'); //entweder nehmer oder geber
+            $table->enum('role', ['geber', 'nehmer']);
             $table->string('ausbildung'); // zum beschreiben der derzeitigen Ausbildung od höchster
             $table->rememberToken();
             $table->timestamps();
