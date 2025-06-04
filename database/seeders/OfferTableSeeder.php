@@ -29,5 +29,13 @@ class OfferTableSeeder extends Seeder
         //comment ist default ''
         $offer2->save();
 
+        $offer3 = new Offer();
+        $offer3->name = 'Test Nachhilfe von user 3';
+        $offer3->description = 'Ich biete Nachhilfe für sdfsdfnsdnfkjsdnf.';
+        $offer3->course_id = 1;
+        $offer3->user_id = 3;
+        //comment ist default ''
+        $offer3->save();
+
     }
 }

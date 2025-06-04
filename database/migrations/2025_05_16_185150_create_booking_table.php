@@ -18,6 +18,8 @@ return new class extends Migration
             $table->foreignId('receiver_id')->constrained('users');
             $table->foreignId('offer_id')->constrained('offers');
             $table->foreignId('slot_id')->constrained('slots');
+
+
         });
     }
 

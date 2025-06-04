@@ -10,6 +10,9 @@ use Illuminate\Database\Eloquent\Relations\HasOne;
 class Booking extends Model
 {
     protected $fillable = ['giver_id', 'receiver_id', 'offer_id', 'slot_id'];
+    //protected $fillable = ['giver', 'receiver', 'offer', 'slot', 'course', 'course.subcourse'];
+
+
 
     public function giver():BelongsTo
     {
@@ -33,6 +36,15 @@ class Booking extends Model
     public function slot(): BelongsTo {
         return $this->belongsTo(Slot::class);
     }
+
+    public function course()
+    {
+        return $this->belongsTo(Course::class);
+    }
+
+
+
+
 
 
 

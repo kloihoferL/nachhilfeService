@@ -13,4 +13,10 @@ class SubCourse extends Model
     public function course():BelongsTo{
         return $this->belongsTo(Course::class);
     }
+
+    public function bookings()
+    {
+        return $this->belongsToMany(Booking::class, 'booking_subcourse');
+    }
+
 }

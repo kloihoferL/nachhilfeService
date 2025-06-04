@@ -65,7 +65,7 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'auth.jwt' => \PHPOpenSourceSaver\JWTAuth\Http\Middleware\Authenticate::class, //hinzugefügt
-        //'auth.admin' => \App\Http\Middleware\Admin::class,
+        'auth.admin' => \App\Http\Middleware\Admin::class,
         'role' => \App\Http\Middleware\CheckRole::class, // Middleware für rollen
 
     ];

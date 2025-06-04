@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 class Slot extends Model
 {
-    protected $fillable = ['start_time', 'end_time', 'offer_id'];
+    protected $fillable = ['start_time', 'end_time', 'offer_id', 'is_booked'];
 
     //ein slot gehört zu einem Angebot
     public function offer():BelongsTo
@@ -15,11 +15,10 @@ class Slot extends Model
         return $this->belongsTo(Offer::class);
     }
 
-    //ein slot gehört zu einer Buchung
-    /*public function booking():BelongsTo
+    public function booking():BelongsTo
     {
         return $this->belongsTo(Booking::class);
-    }*/
+    }
 
 
 
