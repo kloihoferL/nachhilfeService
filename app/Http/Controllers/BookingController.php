@@ -28,40 +28,6 @@ class BookingController extends Controller
     }
 
 
-   /* public function makeBooking(Request $request)
-    {
-        foreach ($request->all() as $bookingData) {
-            $slot = Slot::find($bookingData['slot_id']);
-
-            if (!$slot) {
-                continue;
-            }
-
-            $slot->is_booked = true;
-            $slot->save();
-
-            $booking = Booking::create([
-                'offer_id' => $bookingData['offer_id'],
-                'slot_id' => $slot->id,
-                'receiver_id' => $bookingData['receiver_id'],
-                'giver_id' => $bookingData['giver_id'],
-
-            ]);
-
-            $offer = $slot->offer;
-
-            if ($offer->slots()->where('is_booked', false)->count() === 0) {
-                $offer->booked = true;
-                $offer->save();
-            }
-        }
-
-        return response()->json([
-            'message' => 'Booking created',
-            'slot_id' => $slot->id,
-            'is_booked' => $slot->is_booked,
-        ], 201);
-    }*/
 
    public function makeBooking(Request $request)
 {

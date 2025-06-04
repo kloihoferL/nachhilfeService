@@ -13,12 +13,7 @@ class AppointmentRequestTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $appointment = new AppointmentRequest();
-        $appointment->offer_id = 1;
-        $appointment->sender_id = 2;
-        $appointment->receiver_id = 1;
-        $appointment->requested_time = '2025-05-16 10:00:00';
-        $appointment->save();
+
 
     }
 }

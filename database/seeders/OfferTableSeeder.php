@@ -24,18 +24,10 @@ class OfferTableSeeder extends Seeder
         $offer2 = new Offer();
         $offer2->name = 'Webentwicklung Nachhilfe';
         $offer2->description = 'Ich biete Nachhilfe für HTML und JavaScript an.';
-        $offer2->course_id = 1;
+        $offer2->course_id = 2;
         $offer2->user_id = 1;
         //comment ist default ''
         $offer2->save();
-
-        $offer3 = new Offer();
-        $offer3->name = 'Test Nachhilfe von user 3';
-        $offer3->description = 'Ich biete Nachhilfe für sdfsdfnsdnfkjsdnf.';
-        $offer3->course_id = 1;
-        $offer3->user_id = 3;
-        //comment ist default ''
-        $offer3->save();
 
     }
 }
