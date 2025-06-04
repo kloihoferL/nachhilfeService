@@ -54,10 +54,13 @@ class AppointmentRequestController extends Controller
                 'content' => 'Dein Anfrage für das Angebot wurde angenommen und eine Buchung wurde erstellt.'
             ]);*/
 
+            $geberName = $appointmentRequest->receiver->name ?? 'Ein Nutzer';
+            $kursTitel = $appointmentRequest->offer->name ?? 'ein Kurs';
+
             Message::create([
                 'sender_id' => auth()->id(),
                 'receiver_id' => $appointmentRequest->sender_id,
-                'content' => 'Deine Anfrage für das Angebot wurde angenommen und eine Buchung wurde erstellt.'
+                'content' => "Deine Anfrage für den Kurs $kursTitel} wurde von {$geberName} angenommen. Eine Buchung wurde erstellt."
             ]);
 
             return response()->json(['message' => 'Appointment request accepted successfully. And message was sent'], 200);
@@ -71,10 +74,14 @@ class AppointmentRequestController extends Controller
         if ($appointmentRequest) {
             $appointmentRequest->status = 'rejected';
             $appointmentRequest->save();
+
+            $geberName = $appointmentRequest->receiver->name ?? 'Ein Nutzer';
+            $kursTitel = $appointmentRequest->offer->name ?? 'ein Kurs';
+
             Message::create([
                 'sender_id' => auth()->id(),
                 'receiver_id' => $appointmentRequest->sender_id,
-                'content' => 'Deine Anfrage für das Angebot wurde vom Geber abgelehnt.'
+                'content' => "Deine Anfrage für den Kurs {$kursTitel} wurde von {$geberName} abgelehnt."
             ]);
 
 

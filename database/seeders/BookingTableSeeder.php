@@ -13,13 +13,7 @@ class BookingTableSeeder extends Seeder
      */
     public function run(): void
     {
-        $booking = new Booking();
-        $booking->giver_id = 1;
-        $booking->receiver_id = 2;
-        $booking->offer_id = 1;
-        $booking->slot_id = 1;
 
-        $booking->save();
 
     }
 }

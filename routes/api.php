@@ -33,16 +33,15 @@ Route::get('/appointmentRequests', [AppointmentRequestController::class, 'getApp
 Route::post('/createSlot', [SlotController::class, 'createSlot']);
 
 //Routen die für autentifizierte Geber und Nehmer zugänglich sind
-//Route::group(['middleware' => ['api', 'auth.jwt']], function () {
+Route::group(['middleware' => ['api', 'auth.jwt']], function () {
     Route::post('/auth/logout', [AuthController::class, 'logout']);
     Route::get('/bookings', [BookingController::class, 'index']); //alle Nutzer können ihre eigenen bookings erhalten
     Route::post('/booking', [BookingController::class, 'makeBooking']); //alle Nutzer können buchen
-    Route::get('/getMessages', [MessageController::class, 'index']);
-//});
+});
 
 
 //Routen für Geber
-//Route::group(['middleware' => ['api', 'auth.jwt', 'role:geber']], function () {
+Route::group(['middleware' => ['api', 'auth.jwt', 'role:geber']], function () {
     Route::delete('offers/{id}', [OfferController::class, 'delete']);
     Route::post('/saveOffer', [OfferController::class, 'save']);
     Route::put('/rejectAppointment/{id}', [AppointmentRequestController::class, 'rejectAppointment']);
@@ -51,14 +50,16 @@ Route::post('/createSlot', [SlotController::class, 'createSlot']);
     Route::get('/offersByUser/{userId}', [OfferController::class, 'getOfferByUserId']);
     //wenn optionale Änderungen vorgenommen werden sollen
     //Route::put('/offers/{id}/booked', [OfferController::class, 'changeBookedStatus']);
-//});
+});
 
 //Routen für Nehmer
-//Route::group(['middleware' => ['api', 'auth.jwt', 'role:nehmer']], function () {
+Route::group(['middleware' => ['api', 'auth.jwt', 'role:nehmer']], function () {
     Route::post('/newAppointment', [AppointmentRequestController::class, 'makeAppointment']);
     Route::post('/bookings', [BookingController::class, 'makeBooking']); //nur nehmer können buchen
+    Route::get('/getMessages', [MessageController::class, 'index']);
+    Route::delete('/deleteMessage/{id}', [MessageController::class, 'delete']);
 
-//});
+});
 
 
 

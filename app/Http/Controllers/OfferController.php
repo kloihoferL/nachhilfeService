@@ -57,54 +57,6 @@ class OfferController extends Controller
         }
     }
 
-    /*public function save(Request $request): JsonResponse
-    {
-        $request = $this->parseRequest($request);
-        DB::beginTransaction();
-        try {
-            $offer = Offer::create($request->all());
-            DB::commit();
-            return response()->json($offer, 201);
-        } catch (\Exception $e) {
-            DB::rollBack(); //wenn ein Fehler auftritt, dann rollback
-            return response()->json(['message' => 'Saving offer failed: ' . $e->getMessage()], 500);
-        }
-    }*/
-
-    // nur mit slots neu anlegen ohne kurse und subkurse anlegen
-    /*public function save(Request $request): JsonResponse
-    {
-        $request = $this->parseRequest($request); // falls du JSON nimmst
-
-        DB::beginTransaction();
-        try {
-            // 1. Angebot anlegen
-            $offer = Offer::create([
-                'name' => $request->name,
-                'description' => $request->description,
-                'comment' => $request->comment,
-                'user_id' => $request->user_id,
-                'course_id' => $request->course_id
-            ]);
-
-            // 2. Slots anlegen
-            if (isset($request->slots) && is_array($request->slots)) {
-                foreach ($request->slots as $slotData) {
-                    $slot = new Slot();
-                    $slot->start_time = $slotData['start_time'];
-                    $slot->end_time = $slotData['end_time'];
-                    $offer->slots()->save($slot); // Relation!
-                }
-            }
-
-            DB::commit();
-            return response()->json($offer, 201);
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return response()->json(['message' => 'Saving offer failed: ' . $e->getMessage()], 500);
-        }
-    }*/
-
     public function save(Request $request): JsonResponse
     {
         $request = $this->parseRequest($request);
@@ -241,8 +193,6 @@ class OfferController extends Controller
             ], 500);
         }
     }
-
-
 
     public function changeBookedStatus($id): JsonResponse
     {
